@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AU26_Counter.Views.AllCountersPage"
+             xmlns:models="clr-namespace:AU26_Counter.Models"
+             x:DataType="models:AllCounters"
+             Title="Your counters" >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add new counter"
+                 Clicked="Add_Clicked" />
+        <ToolbarItem x:Name="CountersAmount"
+                    Text="" />
+    </ContentPage.ToolbarItems>
+
+    <CollectionView x:Name="CountersCollection"
+                ItemsSource="{Binding Counters}"
+                Margin="20"
+                SelectionMode="Single"
+                SelectionChanged="CountersCollection_SelectionChanged" >
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout Orientation="Vertical"
+                           ItemSpacing="10" />
+        </CollectionView.ItemsLayout>
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="models:Counter">
+                <StackLayout>
+                    <Label 
+                        x:Name="CounterText"
+                        Text="{Binding Text}"
+                       FontSize="22" />
+                    <Label 
+                        x:Name="CounterValue"
+                        Text="{Binding CountValue}"
+                       FontSize="14"
+                       TextColor="Silver" />
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+
+    </CollectionView>
+</ContentPage>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AU26_Counter.Views.CounterCreatePage"
+             Title="Create a counter">
+    <VerticalStackLayout>
+        <Label 
+            Text="Counter creation page"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Editor 
+            x:Name="TextInput"
+            Text=""
+            Placeholder="Enter a name for the counter"
+            HeightRequest="100" />
+        <Entry
+            Text="0"
+            x:Name="ValueInput"
+            Keyboard="Numeric"
+            Placeholder="Enter starting value (only numbers)" />
+
+        <Button
+            Text="Create counter"
+            Clicked="createButtonClicked" />
+    </VerticalStackLayout>
+</ContentPage>
