@@ -11,7 +11,7 @@
         Padding="30,0"
         Spacing="25">
 
-            <Editor 
+            <Entry 
                 x:Name="CounterName"
                 Text="{Binding Text}"
                 Placeholder="Enter a name for the counter"

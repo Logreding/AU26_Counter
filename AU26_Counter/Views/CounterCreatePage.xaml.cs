@@ -9,10 +9,8 @@ public partial class CounterCreatePage : ContentPage
 
     private async void createButtonClicked(object sender, EventArgs e)
     {
-        if (TextInput.Text == "" || ValueInput.Text == "")
+        if (!int.TryParse(ValueInput.Text, out _))
         {
-            DisplayAlert("Input error", "both fields need to be filled", "ok");
-        } else if (!ValueInput.Text.All(char.IsDigit)) {
             DisplayAlert("Input error", "counter value must be a number", "ok");
         } else
         {
@@ -22,7 +20,8 @@ public partial class CounterCreatePage : ContentPage
             counter.Filename = Path.Combine(appDataPath, randomFileName);
             counter.Text = TextInput.Text;
 		    counter.CountValue = int.Parse(ValueInput.Text);
-            File.WriteAllText(counter.Filename, counter.CountValue + ";" + counter.Text);
+            string[] textToWrite = {counter.CountValue.ToString(), counter.Text};
+            File.WriteAllLines(counter.Filename, textToWrite);
             await Shell.Current.GoToAsync("..");
         }
     }

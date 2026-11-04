@@ -22,8 +22,8 @@ public partial class CounterPage : ContentPage
 
         if (File.Exists(fileName))
         {
-            counterModel.CountValue = int.Parse(File.ReadAllText(fileName).Split(";")[0]);
-            counterModel.Text = File.ReadAllText(fileName).Split(';')[1];
+            counterModel.CountValue = int.Parse(File.ReadAllLines(fileName)[0]);
+            counterModel.Text = File.ReadAllLines(fileName)[1];
         } else
         {
             counterModel.CountValue = 0;
@@ -38,7 +38,8 @@ public partial class CounterPage : ContentPage
         counter.AddCount();
         cntr.Text = counter.CountValue.ToString();
         counter.Text = CounterName.Text;
-        File.WriteAllText(counter.Filename, counter.CountValue + ";" + counter.Text);
+        string[] textToWrite = { counter.CountValue.ToString(), counter.Text };
+        File.WriteAllLines(counter.Filename, textToWrite); ;
     }
 
     public void OnCounterDecreaseClicked (object sender, EventArgs e)
@@ -47,14 +48,16 @@ public partial class CounterPage : ContentPage
         counter.DecreaseCount();
         cntr.Text = counter.CountValue.ToString();
         counter.Text = CounterName.Text;
-        File.WriteAllText(counter.Filename, counter.CountValue + ";" + counter.Text);
+        string[] textToWrite = { counter.CountValue.ToString(), counter.Text };
+        File.WriteAllLines(counter.Filename, textToWrite); ;
     }
 
     private void NameChanged(object sender, TextChangedEventArgs e)
     {
         Models.Counter counter = (Models.Counter)BindingContext;
         counter.Text = CounterName.Text;
-        File.WriteAllText(counter.Filename, counter.CountValue + ";" + counter.Text);
+        string[] textToWrite = { counter.CountValue.ToString(), counter.Text };
+        File.WriteAllLines(counter.Filename, textToWrite);
     }
 
     private async void returnButtonClicked(object sender, EventArgs e)

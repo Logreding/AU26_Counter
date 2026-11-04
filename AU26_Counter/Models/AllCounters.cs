@@ -25,8 +25,8 @@ namespace AU26_Counter.Models
                 .Select(filename => new Counter()
                 {
                     Filename = filename,
-                    CountValue = int.Parse(File.ReadAllText(filename).Split(";")[0]),
-                    Text = File.ReadAllText(filename).Split(';')[1]
+                    CountValue = int.Parse(File.ReadAllLines(filename)[0]),
+                    Text = File.ReadAllLines(filename)[1]
                 });
             foreach (Counter counter in counters)
             {

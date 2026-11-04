@@ -8,16 +8,18 @@
             Text="Counter creation page"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-        <Editor 
+        <Entry 
             x:Name="TextInput"
             Text=""
             Placeholder="Enter a name for the counter"
-            HeightRequest="100" />
+            HeightRequest="150"
+            FontSize="100"/>
         <Entry
             Text="0"
             x:Name="ValueInput"
             Keyboard="Numeric"
-            Placeholder="Enter starting value (only numbers)" />
+            Placeholder="Enter starting value (only numbers)"
+            FontSize="150"/>
 
         <Button
             Text="Create counter"
